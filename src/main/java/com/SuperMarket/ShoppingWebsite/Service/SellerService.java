@@ -35,4 +35,17 @@ public class SellerService {
         }
         return sellerResponseDtos;
     }
+
+    public SellerResponseDto getBypan(String pancard) throws Exception {
+        Seller seller;
+        try{
+            seller=sellerRepository.findByPanNo(pancard);
+        }
+        catch(Exception e)
+        {
+            throw new Exception("Pancard not valid");
+        }
+        SellerResponseDto sellerResponseDto=SellerConvertor.sellerToDto(seller);
+        return sellerResponseDto;
+    }
 }

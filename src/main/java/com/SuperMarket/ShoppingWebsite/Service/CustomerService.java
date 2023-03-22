@@ -3,6 +3,7 @@ package com.SuperMarket.ShoppingWebsite.Service;
 import com.SuperMarket.ShoppingWebsite.Convertor.CustomerConvertor;
 import com.SuperMarket.ShoppingWebsite.Entity.Cart;
 import com.SuperMarket.ShoppingWebsite.Entity.Customer;
+import com.SuperMarket.ShoppingWebsite.Exception.EmailNotFoundException;
 import com.SuperMarket.ShoppingWebsite.Repository.CustomerRepository;
 import com.SuperMarket.ShoppingWebsite.RequestDto.CustomerRequestDto;
 import com.SuperMarket.ShoppingWebsite.ResponseDto.CustomerResponseDto;
@@ -58,5 +59,18 @@ public class CustomerService {
             customerResponseDtos.add(customerResponseDto);
         }
         return customerResponseDtos;
+    }
+
+    public CustomerResponseDto getCustomerbyEmail(String email) throws Exception {
+        Customer customer;
+        try {
+            customer=customerRepository.findByEmail(email);
+        }
+        catch (Exception e)
+        {
+            throw new EmailNotFoundException("Email is Incorrect");
+        }
+        CustomerResponseDto customerResponseDto=CustomerConvertor.customerToDto(customer);
+        return customerResponseDto;
     }
 }

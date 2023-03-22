@@ -1,5 +1,6 @@
 package com.SuperMarket.ShoppingWebsite.Controller;
 
+import com.SuperMarket.ShoppingWebsite.Entity.Customer;
 import com.SuperMarket.ShoppingWebsite.RequestDto.CustomerRequestDto;
 import com.SuperMarket.ShoppingWebsite.ResponseDto.CustomerResponseDto;
 import com.SuperMarket.ShoppingWebsite.Service.CustomerService;
@@ -30,5 +31,10 @@ public class CustomerController {
     public List<CustomerResponseDto> getAllCustomer()
     {
         return customerService.getAllCustomer();
+    }
+
+    @GetMapping("/getByEmail")
+    public CustomerResponseDto getCustomerByEmail(@RequestParam ("email")String email) throws Exception {
+        return customerService.getCustomerbyEmail(email);
     }
 }

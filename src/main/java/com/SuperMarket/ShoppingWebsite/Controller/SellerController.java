@@ -26,4 +26,9 @@ public class SellerController {
     {
         return sellerService.getAllsellers();
     }
+
+    @GetMapping("/getByPanCard")
+    public SellerResponseDto getByPan(@RequestParam("pan")String pancard) throws Exception {
+        return sellerService.getBypan(pancard);
+    }
 }
