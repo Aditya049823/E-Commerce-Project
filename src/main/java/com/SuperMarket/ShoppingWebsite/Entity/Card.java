@@ -2,6 +2,7 @@ package com.SuperMarket.ShoppingWebsite.Entity;
 
 import com.SuperMarket.ShoppingWebsite.Enum.CardType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import javax.print.attribute.standard.MediaSize;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Table(name = "card")
 public class Card {
 
