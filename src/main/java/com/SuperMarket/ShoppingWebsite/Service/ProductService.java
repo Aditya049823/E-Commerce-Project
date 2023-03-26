@@ -24,6 +24,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+
     public ProductResponseDto addProduct(ProductRequestDto productRequestDto) throws SellerNotFoundException {
         Seller seller;
         try {
