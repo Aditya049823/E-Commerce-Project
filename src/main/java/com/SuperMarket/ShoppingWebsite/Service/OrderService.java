@@ -64,16 +64,16 @@ public class OrderService {
         order.getItemList().add(item);
         order.setCustomer(customer);
 
+        customer.getOrderedList().add(order);
+        Customer savedCustomer=customerRepository.save(customer);
+        Ordered saveOrder=savedCustomer.getOrderedList().get(savedCustomer.getOrderedList().size()-1);
+
         int leftQuantity=product.getQuantity()- orderRequestDto.getRequiredQuantity();
         if(leftQuantity<=0)
         {
             product.setProductStatus(ProductStatus.OUT_OF_STOCK);
         }
         product.setQuantity(leftQuantity);
-
-        customer.getOrderedList().add(order);
-        Customer savedCustomer=customerRepository.save(customer);
-        Ordered saveOrder=savedCustomer.getOrderedList().get(savedCustomer.getOrderedList().size()-1);
 
         OrderResponseDto orderResponseDto=OrderResponseDto.builder()
                 .productName(product.getName())
@@ -87,4 +87,6 @@ public class OrderService {
 
         return orderResponseDto;
     }
+
+
 }
